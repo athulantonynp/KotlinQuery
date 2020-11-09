@@ -13,16 +13,14 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        query=useQuery("test-key") { setData() }
 
         //Destructed way
-        val (isExecuting,result)=useQuery("test-key-2"){setData()}
+        val (isExecuting,result)=useQuery<String>("test-two",item)
 
     }
 
-    fun  setData():String{
-
+    val item=fun():String{
         Thread.sleep(3000)
-        return "Hello KotlinQuery ${System.currentTimeMillis()}"
+        return  ""
     }
 }

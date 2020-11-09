@@ -3,7 +3,7 @@ package app.query.kotlin.query
 import app.query.kotlin.query.data.QueryData
 
 
-fun Any.useQuery(key:String, function:()-> Any?): QueryData {
+fun <T> Any.useQuery(key:String,  function: ()->T): QueryData {
     val data=QueryData()
     data.isExecuting=true
 
@@ -12,4 +12,11 @@ fun Any.useQuery(key:String, function:()-> Any?): QueryData {
     data.isExecuting=false
 
     return data
+}
+
+fun <T> asList(vararg ts: ()->T): List<T> {
+    val result = ArrayList<T>()
+    for (t in ts) // ts is an Array
+        result.add(t.invoke())
+    return result
 }
